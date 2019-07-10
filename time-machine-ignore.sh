@@ -64,4 +64,4 @@ while IFS= read -r path || [[ -n "$path" ]]; do
   fi
 done <$filePath
 
-echo -e "\n  ${GREEN}Done${RESET} after ${SECONDS}s"
+step "Done after ${SECONDS}s"

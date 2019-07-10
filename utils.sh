@@ -89,5 +89,5 @@ todo() {
 
 step() {
   echo ""
-  echo -e "${INDENT}${DOT} ${UNDERLINE}$1${RESET}\n"
+  echo -e "${INDENT}${DOT} ${DIM}$1${RESET}\n"
 }
