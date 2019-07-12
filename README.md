@@ -28,9 +28,13 @@ alias tmexclude="bash ~/.zsh/time-machine-exclude.sh"
 > You can see all utilities in action by running the test
 > script: `bash ./_tests.sh`
 
-### Things I think about:
+## Previews
 
-Maybe formatting, utils and spinner in a utils folder and
-utils is just a importer of all with _utils.sh as naming.
 
-Move everything to .scripts?
+| docker-stop-by-port | time-machine-exclude | utils |
+|---|---|---|
+| ![stop][1] | ![tmexclude][2] | ![utils][3] |
+
+[1]: ./assets/docker-stop-by-port.gif
+[2]: ./assets/time-machine-exclude.gif
+[3]: ./assets/utils.gif
