@@ -19,11 +19,12 @@ alias tmexclude="bash ~/.zsh/time-machine-exclude.sh"
 
 ## Utilities
 
-- [./text.sh](./text.sh)
-- [./functions.sh](./functions.sh)
-- [./components.sh](./components.sh)
-- [./spinner.sh](./spinner.sh)
-- [./execute.sh](./execute.sh)
+- [./_utils.sh](./_utils.sh)
+- [./utils/text.sh](./utils/text.sh)
+- [./utils/functions.sh](./utils/functions.sh)
+- [./utils/components.sh](./utils/components.sh)
+- [./utils/spinner.sh](./utils/spinner.sh)
+- [./utils/execute.sh](./utils/execute.sh)
 
 > You can see all utilities in action by running the test
 > script: `bash ./_tests.sh`
