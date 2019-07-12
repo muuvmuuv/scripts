@@ -157,3 +157,5 @@ spinner "" "Failing while sleeping too long" 2
 print_error 'sleep 100 & spinner "" "Failing while sleeping too long" 2'
 
 step "5/5"
+
+step "Done after ${SECONDS}s"

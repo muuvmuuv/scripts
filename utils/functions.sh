@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 script_setup() {
+  SECONDS=0    # set native bash timer to zero
   clear        # clear the terminal screen
   tput cup 0 2 # start on line X collumn Y
   tput civis   # hide the users cursor
@@ -8,7 +9,7 @@ script_setup() {
   trap script_end EXIT
 }
 script_end() {
-  echo ""
+  new_line
   tput cnorm # show the users cursor
 }
 

@@ -20,7 +20,6 @@
 
 script_setup
 filePath=~/.tmexclude
-SECONDS=0
 
 title "Exclude files and directories from Time Machine"
 

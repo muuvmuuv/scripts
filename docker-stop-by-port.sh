@@ -54,3 +54,5 @@ done
 if [ $num_results -eq $no_results ]; then
   print_info "No running container found with port ${YELLOW}${port}${RESET}"
 fi
+
+step "Done after ${SECONDS}s"
