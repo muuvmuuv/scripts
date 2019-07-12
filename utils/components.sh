@@ -14,7 +14,7 @@ print_text() {
 }
 
 print_info() {
-  print_text "[${BLUE}i${RESET}] $1"
+  print_text "[${BLUE}i${RESET}] $1${RESET}"
 }
 
 print_question() {

@@ -72,7 +72,7 @@ spinner() {
     ELAPSED_TIME=$(($NOW - $START))
     if [ "$ELAPSED_TIME" -eq "$timeout" ]; then
       killcode=124
-      kill $pid
+      kill "$pid" &>/dev/null
       break
     fi
 
@@ -90,7 +90,9 @@ spinner() {
 
   done
 
-  wait $pid &>/dev/null
+  wait "$pid" &>/dev/null
+  exitCode=$?
+
   trap - EXIT
 
   # clear line
@@ -100,8 +102,6 @@ spinner() {
   # set returning exit code
   if [ "$killcode" -eq 124 ]; then
     exitCode=124 # timeout
-  else
-    exitCode=$?
   fi
 
   return $exitCode
