@@ -3,7 +3,7 @@
 script_setup() {
   clear        # clear the terminal screen
   tput cup 0 2 # start on line X collumn Y
-  # tput civis   # hide the users cursor
+  tput civis   # hide the users cursor
 
   trap script_end EXIT
 }
