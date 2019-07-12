@@ -15,7 +15,6 @@ script_end() {
 #
 # sizeondisk=$(fileSize $path)
 #
-
 fileSize() {
   local path="$1"
   tempfile=$(mktemp -qt filesize.XXXXX)
