@@ -13,7 +13,7 @@ script_end() {
 }
 
 #
-# sizeondisk=$(fileSize $path)
+# sizeondisk=$(fileSize "~/.zsh")
 #
 fileSize() {
   local path="$1"
