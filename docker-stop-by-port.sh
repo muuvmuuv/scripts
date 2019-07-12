@@ -12,10 +12,9 @@
 #   alias stop="bash ~/.zsh/docker-stop-by-port.sh"
 #
 
-. ~/.zsh/formatting.sh
-. ~/.zsh/utils.sh
-. ~/.zsh/spinner.sh
+. ~/.zsh/_utils.sh
 
+script_setup
 port=$1
 
 title "Stop docker container by port: $port"

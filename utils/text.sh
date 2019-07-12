@@ -1,5 +1,7 @@
 RESET='\033[0m'
 
+# Colors
+
 RED='\033[31m'
 GREEN='\033[32m'
 YELLOW='\033[33m'
@@ -14,9 +16,12 @@ BG_WHITE='\033[30;107m'
 
 DIM='\033[2m'
 
+# Formatting
+
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 BLINK='\033[5m'
 
-INDENT='  '
+# Misc
+
 DOT="${RED}▸${RESET}"

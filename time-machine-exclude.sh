@@ -2,11 +2,12 @@
 
 #
 # Simple script to exclude folders and files from Time Machine backups
-# from a file.
+# from a file. This is good for automating the exclution of files and
+# folders.
 #
 # Usage:
 #
-#   1. Create a file in your root folder: ~/.tmignore
+#   1. Create a file in your root folder: ~/.tmexclude
 #   2. On each line put a absolute file or directory you want to exclude
 #   3. Run `bash time-machine-ignore.sh`
 #
@@ -15,27 +16,27 @@
 #   alias stop="bash ~/.zsh/time-machine-ignore.sh"
 #
 
-. ~/.zsh/formatting.sh
-. ~/.zsh/spinner.sh
+. ~/.zsh/_utils.sh
 
-filePath=~/.tmignore
+script_setup
+filePath=~/.tmexclude
 SECONDS=0
 
 title "Exclude files and directories from Time Machine"
 
 if [[ ! -e "$filePath" ]]; then
-  print_warning "Could not find \`.tmignore\` in your root!"
+  print_warning "Could not find \`.tmexclude\` in your root!"
   exit 1
 fi
 
 while IFS= read -r path || [[ -n "$path" ]]; do
-  # replace tilde with home absolute path
-  path=${path/\~/$HOME}
-
-  # this path is commented out
-  if [[ $path == \;* ]]; then
+  # this path is commented out or empty
+  if [[ $path == \;* ]] || [[ -z $path ]]; then
     continue
   fi
+
+  # replace tilde with home absolute path
+  path=${path/\~/$HOME}
 
   # if the file or directory does not exist
   if [[ ! -e "$path" ]] && [[ ! -d "$path" ]]; then
@@ -44,9 +45,7 @@ while IFS= read -r path || [[ -n "$path" ]]; do
   fi
 
   # get file or directory size
-  # TODO: https://stackoverflow.com/questions/56971930/run-a-function-while-background-task-is-running-and-return-stdout-to-variable
-  # sizeondisk=$(du -hs "$path" | cut -f1) &
-  # spinner "" "Getting file size for $path..."
+  sizeondisk=$(fileSize "$path")
 
   # if the file or directory is already excluded
   if tmutil isexcluded "$path" | grep -q '\[Excluded\]'; then
@@ -55,12 +54,12 @@ while IFS= read -r path || [[ -n "$path" ]]; do
   fi
 
   # exclude the file or directory from Time Machine backups
-  execute "tmutil addexclusion $path" " " "Excluding $path ($sizeondisk)"
+  execute "tmutil addexclusion \"$path\"" " " "Excluding $path"
 
   if [[ "$exitCode" -eq 0 ]]; then
     print_success "Excluded $path ($sizeondisk)"
   else
-    print_error "Failed with code: ${YELLOW}${exitCode}${RESET}"
+    print_error "Failed with code: ${YELLOW}${exitCode}${RESET}\n\t$path"
   fi
 done <$filePath
 
