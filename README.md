@@ -7,14 +7,16 @@ experience enable blinking text in your terminal of choice.
 
 - [./docker-stop-by-port.sh](./docker-stop-by-port.sh)
 - [./time-machine-exclude.sh](./time-machine-exclude.sh)
+- [./update-prezto.sh](./update-prezto.sh)
+- [./image-to-icns.sh](./image-to-icns.sh)
 
 __Usage:__
 
 ```shell
 # ~/.zprofile
 
-alias stop="bash ~/.zsh/docker-stop-by-port.sh"
-alias tmexclude="bash ~/.zsh/time-machine-exclude.sh"
+alias stop="bash ~/.scripts/docker-stop-by-port.sh"
+alias tmexclude="bash ~/.scripts/time-machine-exclude.sh"
 ```
 
 ## Utilities
@@ -31,10 +33,9 @@ alias tmexclude="bash ~/.zsh/time-machine-exclude.sh"
 
 ## Previews
 
-| docker-stop-by-port | time-machine-exclude | utils |
-| --- | --- | --- |
 | ![docker-stop-by-port][1] | ![time-machine-exclude][2] | ![update-prezto][3] |
-| ![image-to-icns][4] | ![_tests][5] |  |
+| --- | --- | --- |
+| ![image-to-icns][4] | ![_tests][5] | /// |
 
 [1]: ./assets/docker-stop-by-port.svg
 [2]: ./assets/time-machine-exclude.svg
