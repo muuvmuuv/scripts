@@ -31,11 +31,13 @@ alias tmexclude="bash ~/.zsh/time-machine-exclude.sh"
 
 ## Previews
 
-
 | docker-stop-by-port | time-machine-exclude | utils |
-|---|---|---|
-| ![stop][1] | ![tmexclude][2] | ![utils][3] |
+| --- | --- | --- |
+| ![docker-stop-by-port][1] | ![time-machine-exclude][2] | ![update-prezto][3] |
+| ![image-to-icns][4] | ![_tests][5] |  |
 
-[1]: ./assets/docker-stop-by-port.gif
-[2]: ./assets/time-machine-exclude.gif
-[3]: ./assets/utils.gif
+[1]: ./assets/docker-stop-by-port.svg
+[2]: ./assets/time-machine-exclude.svg
+[3]: ./assets/update-prezto.svg
+[4]: ./assets/image-to-icns.svg
+[5]: ./assets/_tests.svg

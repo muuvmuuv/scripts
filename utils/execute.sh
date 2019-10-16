@@ -34,9 +34,9 @@ execute() {
     print_muted "$ $1"
     new_line
 
-    exitNum=${4:-0}
-    if [ "$exitNum" -eq 1 ]; then
-      exit 1
+    exitNum=${4:--1}
+    if [ $exitNum -ge 0 ]; then
+      exit $exitNum
     fi
   fi
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-. ~/.zsh/_utils.sh
-
+origin="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+. $origin/_utils.sh
 script_setup
 
 #
@@ -49,7 +49,7 @@ title "functions.sh"
 
 # fileSize
 headline 'fileSize'
-path=~/.zsh
+path=~/.config
 print_text "File size for $path:"
 sizeondisk=$(fileSize "$path")
 print_text "$sizeondisk"
@@ -65,7 +65,7 @@ new_line
 
 # strip_ansi
 headline 'strip_ansi'
-rainbow="${BLUE}R${GREEN}A${YELLOW}I${BLUE}N${RED}B${YELLOW}O${GREEN}W${RESET}"
+rainbow="${BLUE}R${GREEN}${UNDERLINE}A${YELLOW}I${RESET}${BLUE}N${RED}B${YELLOW}${BLINK}O${GREEN}W${RESET}"
 rainbow_nocolor=$(strip_ansi "$rainbow")
 print_text "$rainbow"
 print_text "$rainbow_nocolor"
@@ -88,11 +88,11 @@ title "components.sh"
 # basic text
 headline 'Basic text'
 print_text "print_text"
+print_muted "print_muted"
 print_info "print_info"
 print_question "print_question"
 print_success "print_success"
 print_success_muted "print_success_muted"
-print_muted "print_muted"
 print_warning "print_warning"
 print_error "print_error"
 
@@ -113,7 +113,7 @@ print_text "title – to print those big fance block titles"
 print_text "headline – to print some section headlines"
 echo_install "echo_install"
 todo "todo"
-print_text "step – ↓ print this step ↓"
+print_text "step – ↓ prints this ↓"
 
 step "3/5"
 
@@ -124,19 +124,19 @@ step "3/5"
 title "execute.sh"
 
 # just executes with text before
-execute "sleep .5" "Executing sleep" ""
-print_success 'execute "sleep .5" "Executing sleep " ""'
+execute "sleep 1" "Executing sleep" ""
+print_success 'execute "sleep 1" "Executing sleep " ""'
 
 # just executes with text after
-execute "sleep .5" "" "Executing sleep"
-print_success 'execute "sleep .5" "" " Executing sleep"'
+execute "sleep 1" "" "Executing sleep"
+print_success 'execute "sleep 1" "" " Executing sleep"'
 
 # fail because command does not exist
 execute "imagination" "" "Failed executing imagination: command not found"
 print_error 'execute "imagination" "" "Failed executing imagination: command not found"'
 
 # fail because command takes to long
-execute "sleep 100" "" "Failed executing sleep: takes too long" 2
+execute "sleep 10" "" "Failed executing sleep: takes too long" 2
 
 step "4/5"
 
@@ -147,9 +147,9 @@ step "4/5"
 title "spinner.sh"
 
 # show spinner
-sleep .5 &
+sleep 1 &
 spinner "" "Finish after a sleep"
-print_success 'sleep .5 & spinner "" "Finish after a sleep"'
+print_success 'sleep 1 & spinner "" "Finish after a sleep"'
 
 # fail because it takes to long
 sleep 10 &
@@ -158,4 +158,4 @@ print_error 'sleep 100 & spinner "" "Failing while sleeping too long" 2'
 
 step "5/5"
 
-step "Done after ${SECONDS}s"
+script_end

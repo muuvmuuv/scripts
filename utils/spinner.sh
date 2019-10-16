@@ -5,7 +5,7 @@
 #
 # Usage:
 #
-#   spinner [pid] [text_before] [text_after] [max_execution_time]
+#   spinner [text_before] [text_after] [max_execution_time]
 #
 # Example:
 #
@@ -29,10 +29,9 @@ spinner() {
 
   # PARTS=("[/]" "[-]" "[\]" "[|]")
   PARTS=("[⠋]" "[⠙]" "[⠹]" "[⠸]" "[⠼]" "[⠴]" "[⠦]" "[⠧]" "[⠇]" "[⠏]")
-  # PARTS=("[    ]" "[=   ]" "[==  ]" "[=== ]" "[ ===]" "[  ==]" "[   =]" "[    ]" "[   =]" "[  ==]" "[ ===]" "[====]" "[=== ]" "[==  ]" "[=   ]")
 
   PARTS_LENGTH=$((${#PARTS[@]} - 1))
-  PART_LENGTH=3
+  PART_LENGTH=${#PARTS[0]}
 
   INPUT_BEFORE="$1"
   BEFORE="${INDENT}"

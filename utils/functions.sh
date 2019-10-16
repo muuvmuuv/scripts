@@ -1,31 +1,36 @@
 #!/usr/bin/env bash
 
 script_end() {
+  print_muted "\n${INDENT}Done after ${SECONDS}s"
   new_line
-  tput cnorm # show the users cursor
+  # tput cnorm # show the users cursor
 }
 script_setup() {
   SECONDS=0    # set native bash timer to zero
   clear        # clear the terminal screen
   tput cup 0 2 # start on line X collumn Y
-  tput civis   # hide the users cursor
+  # tput civis   # hide the users cursor
+
+  # The name of the current script
+  scriptname=$(basename "$0")
 
   trap script_end EXIT
 }
 
 #
-# sizeondisk=$(fileSize "~/.zsh")
+# sizeondisk=$(fileSize "/Users/xxxx/Downloads/new folder")
 #
 fileSize() {
   local path="$1"
+  path=${path/\~/$HOME} # replace tilde with home absolute path
   tempfile=$(mktemp -qt filesize.XXXXX)
-  { du -hs "$path" | cut -f1; } >"$tempfile" &
+  { du -hsL "$path" | cut -f1; } >"$tempfile" &
   spinner "" "Getting file/dir size for $path"
   sizeondisk=$(<"$tempfile")
   sizeondisk="${sizeondisk// /}"
   rm -rf "$tempfile"
   if [ $exitCode -eq 124 ]; then
-    echo -n "⚠ "
+    echo -n "⚠"
   else
     echo -n "$sizeondisk"
   fi

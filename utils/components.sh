@@ -10,7 +10,7 @@ new_line() {
 }
 
 print_text() {
-  echo -e "${INDENT}$1"
+  echo -e "${INDENT}$1${RESET}"
 }
 
 print_info() {
@@ -39,6 +39,10 @@ print_warning() {
 
 print_error() {
   print_text "[${RED}𝘅${RESET}] $1"
+}
+
+print_custom() {
+  print_text "[${BLUE}$1${RESET}] $2"
 }
 
 label_blue() {
@@ -83,4 +87,28 @@ todo() {
 step() {
   new_line
   print_text "${DOT} ${DIM}$1${RESET}\n"
+}
+
+show_usage() {
+  printf "$1" | tail -n +2
+}
+
+handle_exit() {
+  success_message=$1
+  if [ $exitCode -eq 0 ]; then
+    print_success "${success_message} (${SECONDS}s)"
+  else
+    print_error "Failed with code: ${YELLOW}${exitCode}${RESET} (${SECONDS}s)"
+    exit $exitCode
+  fi
+}
+
+version() {
+  v=$2
+  input=$1
+
+  if [ "$input" == "version" ] || [ "$input" == "--version" ] || [ "$input" == "-v" ] || [ "$input" == "-version" ]; then
+    print_text "Version ${BLUE}$v"
+    exit 0
+  fi
 }

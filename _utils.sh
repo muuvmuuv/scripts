@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-. ~/.zsh/utils/text.sh
-. ~/.zsh/utils/functions.sh
-. ~/.zsh/utils/components.sh
+. $origin/utils/text.sh
+. $origin/utils/functions.sh
+. $origin/utils/components.sh
 
-. ~/.zsh/utils/spinner.sh
-. ~/.zsh/utils/execute.sh
+. $origin/utils/spinner.sh
+. $origin/utils/execute.sh
