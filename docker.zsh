@@ -3,27 +3,22 @@
 setopt extendedglob
 setopt kshglob
 
-#
-# Docker stop
-#
-# Stop a docker container by its port, name or just all.
-#
-
 __usage="
-    Stop a docker container by its port, name or just all.
+    Tool to simply some docker stuff and stop containers easier.
 
     Options:
 
-        dstop [command] <port>
+        duck [command] <port>
 
-        list        Show a list of all running containers
+        list        Show a list of all running containers with their public ports
+        stop        Stop container by port, name or ID
         all         Stop all running containers
         help        Show this message
 
     Usage:
 
-        > dstop 3306 443
-        > dstop all
+        > duck 3306 443
+        > duck all
 "
 
 args=$@
@@ -52,29 +47,30 @@ function list_active {
     for id in $(docker ps -q); do
         container_name=$(get_name $id)
         container_port=$(get_port $id)
-        echo "${container_name}:${id} (${container_port})"
+        echo " ${container_name}:${id} \e[2m(${container_port})\e[0m"
     done
 }
 
 function stop_all {
-    echo "\nStopping all.."
+    echo "\nRunning containers:\n"
     containers=( ${(s/ /)container_running} )
     for c in $containers; do echo "- $c"; done;
-    echo " "
-    docker stop ${container_running}
+    echo "\nStopping...\n"
+    docker stop $(echo ${containers})
 }
 
 function stop_by_port {
     ports=( ${(s/ /)args} )
+    ports=( ${ports[@][2, -1]} )
 
     for port in $ports; do
-        echo "\n>>> Checking port $port:"
+        echo "\n\e[1;96m>>> Checking port $port:\e[0m"
 
         for id in $(docker ps -q); do
             container_name=$(get_name $id)
             container_port=$(get_port $id)
 
-            echo "\n${container_name}:${id} (${container_port})"
+            echo -e "\n\e[2m${container_name}:${id} (${container_port})\e[0m"
 
             if [[ $container_port == *${port}* ]]; then
                 echo "Stopping container..."
@@ -94,7 +90,7 @@ case "$1" in
     all)
         stop_all
         ;;
-    [0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9][0-9][0-9])
+    stop)
         stop_by_port
         ;;
     *)
