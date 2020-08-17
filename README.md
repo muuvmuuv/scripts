@@ -9,5 +9,7 @@ Utility scripts for zsh.
 Add this somewhere in your zsh conf.
 
 ```zsh
-alias dstop="zsh $HOME/.scripts/docker-stop.zsh"
+alias duck="zsh $HOME/.scripts/docker.zsh"
 ```
+
+> All commands have a `help` command to display the usage and some more information.
